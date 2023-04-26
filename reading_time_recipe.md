@@ -53,7 +53,7 @@ If we pass a string containing 200 words
 It will return a string advising a minimum reading time
 """
 > reading_time(200_words)
-> # => "The reading time for 200 words is 1.0 minute(s)."
+> # => "The reading time for 200 words is 1.00 minute(s)."
 
 """
 If we pass a string containing 250 words
