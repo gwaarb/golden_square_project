@@ -35,6 +35,10 @@ class Diary():
     def find_numbers(self):
         if not self.any_entries():
             raise Exception('No stored entries')
+        found_nums = [e.mob for e in self.entries if len(e.mob) != 0]
+        if len(found_nums) == 0:
+            return 'No found mobile numbers'
+        return found_nums
     
     # todo methods
     def add_todo(self, todo):

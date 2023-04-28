@@ -57,6 +57,54 @@ def test_diary_readable_entries():
     result = diary.readable_entry(500, 20)
     assert result == expected
 
+
+"""
+1. Initialise new Diary object
+2. Initialise 2 new Entry objects
+3. Add entries to Diary entries list
+4. Use see entries to review stored Entry objects | returns list
+5. Use find numbers to retrieve stored mobile numbers in entries | returns string
+6. Initialise new Entry object
+7. Add Entry to Diary entries list
+8. Use see entries to review stored Entry objects | returns list
+9. Use find numbers to retrieve stored mobile numbers in entries | returns list
+10. Initialise new Entry object
+11. Add Entry to Diary entries list
+12. Use see entries to review stored Entry objects | returns list
+13. Use find numbers to retrieve stored mobile numbers in entries | returns list
+"""
+def test_diary_find_numbers():
+    diary = Diary()
+    short_entry = Entry('Quick Update', 'blah ' * 999)
+    long_entry = Entry('The Goss', 'blah ' * 4999)
+    new_mob_entry = Entry('Met Someone', 'blah ' * 3999, 'Paul: 07xxxxxxxxx')
+    diary.add_entry(short_entry)
+    diary.add_entry(long_entry)
+    result = diary.see_entries()
+    assert result == [short_entry, long_entry]
+    
+    expected = 'No found mobile numbers'
+    result = diary.find_numbers()
+    assert result == expected
+    
+    new_mob_entry = Entry('Met Someone', 'blah ' * 3999, 'Paul: 07xxxxxxxxx')
+    diary.add_entry(new_mob_entry)
+    result = diary.see_entries()
+    assert result == [short_entry, long_entry, new_mob_entry]
+    
+    expected = 'Paul: 07xxxxxxxxx'
+    result = diary.find_numbers()
+    assert result == [expected]
+    
+    another_new_mob_entry = Entry('Met Another', 'blah ' * 2999, 'Will: 07xxxxxxxxx')
+    diary.add_entry(another_new_mob_entry)
+    result = diary.see_entries()
+    assert result == [short_entry, long_entry, new_mob_entry, another_new_mob_entry]
+    
+    second_expected = 'Will: 07xxxxxxxxx'
+    result = diary.find_numbers()
+    assert result == [expected, second_expected]
+
 #------------------Todo integration function testing------------------
 """
 1. Initialise new Diary object
